@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital1000 – Mil Soluções. Um Ecossistema.</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-900: #1a1f36;
+  --blue-800: #232946;
+  --blue-700: #2d3561;
+  --blue-600: #3457D5;
+  --blue-500: #4070F4;
+  --blue-400: #5B8AF7;
+  --blue-300: #8BABF9;
+  --blue-200: #B8D0FB;
+  --blue-100: #E0EBFF;
+  --blue-50: #F0F4FF;
+  --orange-500: #F5A623;
+  --orange-400: #FFBA42;
+  --orange-300: #FFD080;
+  --orange-100: #FFF4E0;
+  --green-500: #27AE60;
+  --green-100: #E8F8EF;
+  --red-500: #EB5757;
+  --red-100: #FDE8E8;
+  --purple-500: #7C3AED;
+  --purple-100: #EDE9FE;
+  --white: #ffffff;
+  --bg: #F7F8FC;
+  --card: #ffffff;
+  --gray-50: #FAFBFE;
+  --gray-100: #F1F3F9;
+  --gray-200: #E3E6F0;
+  --gray-300: #CDD1E0;
+  --gray-400: #A0A5BD;
+  --gray-500: #6E7491;
+  --gray-600: #4E5370;
+  --gray-700: #353A52;
+  --gray-800: #232946;
+  --gray-900: #1a1f36;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --max-width: 1200px;
+  --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --shadow-sm: 0 1px 3px rgba(26,31,54,0.04);
+  --shadow: 0 4px 20px rgba(26,31,54,0.06);
+  --shadow-lg: 0 12px 40px rgba(26,31,54,0.08);
+  --shadow-blue: 0 8px 28px rgba(64,112,244,0.18);
+  --shadow-card: 0 2px 12px rgba(26,31,54,0.05);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--gray-800);
+  overflow-x: hidden;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+
+/* ===================== HEADER ===================== */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gray-200); transition: box-shadow .3s;
+}
+header.scrolled { box-shadow: var(--shadow); }
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: var(--max-width); margin: 0 auto; padding: .85rem 2rem;
+}
+.logo { font-weight: 800; font-size: 1.5rem; text-decoration: none; color: var(--gray-900); letter-spacing: -0.5px; }
+.logo span { color: var(--blue-500); }
+.nav-links { display: flex; gap: 1.8rem; align-items: center; list-style: none; }
+.nav-links a { color: var(--gray-500); text-decoration: none; font-size: .88rem; font-weight: 600; transition: color .25s; }
+.nav-links a:hover { color: var(--blue-500); }
+.nav-cta {
+  background: var(--blue-500); color: var(--white) !important;
+  padding: .55rem 1.3rem; border-radius: 50px; font-weight: 700;
+  font-size: .82rem; text-decoration: none; transition: all .25s;
+}
+.nav-cta:hover { background: var(--blue-600); transform: translateY(-1px); box-shadow: var(--shadow-blue); }
+.nav-dropdown { position: relative; }
+.dropdown-menu {
+  display: none; position: absolute; top: calc(100% + 14px); left: -16px;
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius); padding: .75rem; min-width: 310px;
+  box-shadow: var(--shadow-lg);
+}
+.nav-dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; padding: .65rem .85rem; border-radius: var(--radius-sm); color: var(--gray-700); font-size: .85rem; line-height: 1.4; }
+.dropdown-menu a:hover { background: var(--blue-50); color: var(--blue-600); }
+.dropdown-menu small { color: var(--gray-400); font-size: .75rem; display: block; margin-top: 2px; font-weight: 400; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { width: 22px; height: 2px; background: var(--gray-700); border-radius: 2px; transition: .3s; }
+@media(max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: fixed; inset: 0; background: var(--white); flex-direction: column; justify-content: center; align-items: center; gap: 2rem; }
+  .nav-links.open { display: flex; z-index: 999; }
+  .dropdown-menu { position: static; min-width: 100%; box-shadow: none; border: none; text-align: center; }
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding-top: 80px; position: relative; overflow: hidden;
+  background: linear-gradient(170deg, var(--white) 0%, var(--blue-50) 40%, var(--bg) 100%);
+}
+.hero::before {
+  content: ''; position: absolute; top: -150px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(64,112,244,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-content { position: relative; z-index: 2; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--blue-100); border: 1px solid var(--blue-200);
+  border-radius: 50px; padding: .35rem 1rem; font-size: .75rem;
+  color: var(--blue-600); font-weight: 700; margin-bottom: 1.5rem;
+  letter-spacing: .5px; text-transform: uppercase;
+}
+.hero-tag::before { content: ''; width: 7px; height: 7px; background: var(--orange-500); border-radius: 50%; animation: tagPulse 2s ease-in-out infinite; }
+@keyframes tagPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.8); } }
+.hero h1 { font-size: clamp(2.4rem,5vw,3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 1.2rem; color: var(--gray-900); }
+.hero h1 .blue { color: var(--blue-500); }
+.hero p { font-size: 1.05rem; color: var(--gray-500); max-width: 480px; margin-bottom: 2rem; line-height: 1.75; }
+.hero-buttons { display: flex; gap: .8rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--blue-500); color: var(--white); padding: .8rem 1.7rem;
+  border-radius: var(--radius-sm); font-weight: 700; font-size: .88rem;
+  text-decoration: none; transition: all .25s; display: inline-flex; align-items: center; gap: .4rem;
+  box-shadow: var(--shadow-blue);
+}
+.btn-primary:hover { background: var(--blue-600); transform: translateY(-2px); }
+.btn-outline {
+  border: 1.5px solid var(--gray-300); color: var(--gray-700); padding: .8rem 1.7rem;
+  border-radius: var(--radius-sm); font-weight: 600; font-size: .88rem;
+  text-decoration: none; transition: all .25s; background: var(--white);
+}
+.btn-outline:hover { border-color: var(--blue-400); color: var(--blue-500); background: var(--blue-50); }
+.hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+#hero-canvas {
+  width: 100%; max-width: 520px; aspect-ratio: 1;
+  border-radius: var(--radius-lg); cursor: grab;
+  filter: drop-shadow(0 20px 40px rgba(64,112,244,0.08));
+}
+#hero-canvas:active { cursor: grabbing; }
+.canvas-hint {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  background: rgba(26,31,54,0.6); backdrop-filter: blur(8px);
+  color: var(--white); font-size: .7rem; font-weight: 600;
+  padding: .3rem .8rem; border-radius: 50px; letter-spacing: .5px;
+  opacity: 1; transition: opacity 1s; pointer-events: none;
+}
+@media(max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero p { margin-left: auto; margin-right: auto; }
+  .hero-buttons { justify-content: center; }
+  .hero-visual { order: -1; }
+  #hero-canvas { max-width: 300px; }
+}
+
+/* ===================== SECTION COMMON ===================== */
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-tag { display: inline-block; color: var(--blue-500); font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin-bottom: .75rem; }
+.section-header h2 { font-size: clamp(1.8rem,3.5vw,2.5rem); font-weight: 800; letter-spacing: -1px; margin-bottom: .8rem; color: var(--gray-900); }
+.section-header h2 .blue { color: var(--blue-500); }
+.section-header p { color: var(--gray-500); max-width: 540px; margin: 0 auto; font-size: .98rem; }
+
+/* ===================== CONDO-STYLE CARDS ===================== */
+/* Base card — white, rounded, subtle shadow, border */
+.c-card {
+  background: var(--card); border: 1px solid var(--gray-200);
+  border-radius: var(--radius); padding: 1.5rem 1.6rem;
+  box-shadow: var(--shadow-sm); transition: all .3s;
+}
+.c-card:hover {
+  box-shadow: var(--shadow); border-color: var(--blue-200);
+  transform: translateY(-2px);
+}
+
+/* Card header row: icon left + text right */
+.c-card-head { display: flex; align-items: flex-start; gap: .9rem; margin-bottom: .8rem; }
+.c-card-icon {
+  width: 40px; height: 40px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.c-card-icon svg { width: 20px; height: 20px; }
+.c-card-icon.bg-blue { background: var(--blue-50); }
+.c-card-icon.bg-orange { background: var(--orange-100); }
+.c-card-icon.bg-green { background: var(--green-100); }
+.c-card-icon.bg-purple { background: var(--purple-100); }
+.c-card-icon.bg-red { background: var(--red-100); }
+.c-card-icon.bg-navy { background: var(--blue-100); }
+
+.c-card-label {
+  font-size: .65rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; margin-bottom: .15rem;
+}
+.c-card-label.text-blue { color: var(--blue-500); }
+.c-card-label.text-orange { color: var(--orange-500); }
+.c-card-label.text-green { color: var(--green-500); }
+.c-card-label.text-purple { color: var(--purple-500); }
+.c-card-label.text-red { color: var(--red-500); }
+.c-card-label.text-navy { color: var(--blue-700); }
+
+.c-card-title { font-size: 1.05rem; font-weight: 700; color: var(--gray-900); line-height: 1.3; }
+.c-card-body { color: var(--gray-500); font-size: .88rem; line-height: 1.65; }
+.c-card-action {
+  display: inline-flex; align-items: center; gap: .3rem; margin-top: 1rem;
+  font-size: .82rem; font-weight: 700; color: var(--blue-500);
+  text-decoration: none; padding: .35rem .75rem; border-radius: 8px;
+  border: 1px solid var(--gray-200); background: var(--white); transition: all .25s;
+}
+.c-card-action:hover { background: var(--blue-50); border-color: var(--blue-300); }
+
+/* ===================== QUICK ACTIONS ROW (Condo style) ===================== */
+.quick-actions { padding: 0 0 2rem; margin-top: -2rem; position: relative; z-index: 10; }
+.quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.q-card {
+  background: var(--card); border: 1px solid var(--gray-200);
+  border-radius: var(--radius); padding: 1.3rem 1.4rem;
+  box-shadow: var(--shadow-sm); transition: all .3s; cursor: pointer;
+  text-decoration: none; color: inherit;
+}
+.q-card:hover { box-shadow: var(--shadow); border-color: var(--blue-200); transform: translateY(-2px); }
+.q-card-head { display: flex; align-items: center; gap: .7rem; margin-bottom: .5rem; }
+.q-card-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.q-card-icon svg { width: 18px; height: 18px; }
+.q-card-label { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; }
+.q-card-title { font-size: .92rem; font-weight: 700; color: var(--gray-900); }
+.q-card-desc { color: var(--gray-400); font-size: .8rem; line-height: 1.5; }
+
+@media(max-width: 900px) { .quick-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 550px) { .quick-grid { grid-template-columns: 1fr; } }
+
+/* ===================== SEGMENTOS ===================== */
+.segments { padding: 5rem 0 3rem; background: var(--bg); }
+.segments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media(max-width: 900px) { .segments-grid { grid-template-columns: 1fr; } }
+
+/* ===================== SOLUÇÕES ===================== */
+.solutions { padding: 5rem 0; background: var(--white); }
+.solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.sol-wide { grid-column: span 2; }
+.sol-card.c-card { padding: 2rem; }
+
+/* Inner layout: text left, illustration right */
+.sol-inner { display: flex; align-items: flex-start; gap: 2rem; }
+.sol-inner .sol-text { flex: 1; }
+.sol-inner .sol-illustration {
+  flex-shrink: 0; width: 180px; height: 140px;
+  display: flex; align-items: center; justify-content: center;
+}
+.sol-inner .sol-illustration svg { width: 100%; height: 100%; }
+
+@media(max-width: 700px) {
+  .solutions-grid { grid-template-columns: 1fr; }
+  .sol-wide { grid-column: span 1; }
+  .sol-inner { flex-direction: column; }
+  .sol-inner .sol-illustration { width: 100%; max-width: 200px; align-self: center; }
+}
+
+/* ===================== COMUNICADOS / FEATURES ROW ===================== */
+.features-row { padding: 2rem 0 5rem; background: var(--white); }
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.feature-card.c-card { }
+/* Comunicados list style */
+.comm-list { list-style: none; margin-top: .8rem; }
+.comm-item { display: flex; gap: .6rem; align-items: flex-start; padding: .55rem 0; border-bottom: 1px solid var(--gray-100); }
+.comm-item:last-child { border-bottom: none; }
+.comm-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.comm-dot.blue { background: var(--blue-500); }
+.comm-dot.orange { background: var(--orange-500); }
+.comm-dot.green { background: var(--green-500); }
+.comm-dot.red { background: var(--red-500); }
+.comm-text-title { font-size: .85rem; font-weight: 700; color: var(--gray-800); }
+.comm-text-desc { font-size: .78rem; color: var(--gray-400); line-height: 1.5; }
+.comm-meta { font-size: .7rem; color: var(--gray-400); margin-top: 2px; }
+.c-card-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+.c-card-topbar .view-all { font-size: .78rem; font-weight: 700; color: var(--blue-500); text-decoration: none; }
+.c-card-topbar .view-all:hover { text-decoration: underline; }
+
+@media(max-width: 700px) { .features-grid { grid-template-columns: 1fr; } }
+
+/* ===================== MANIFESTO ===================== */
+.manifesto {
+  padding: 5rem 0; text-align: center; overflow: hidden;
+  background: linear-gradient(135deg, var(--blue-500) 0%, var(--blue-700) 60%, var(--blue-900) 100%);
+  color: var(--white); position: relative;
+}
+.manifesto::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.manifesto-content { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+.manifesto h2 { font-size: clamp(1.6rem,3.5vw,2.3rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+.manifesto h2 .light { color: var(--orange-400); }
+.manifesto p { font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 2rem; }
+.manifesto strong { color: var(--white); }
+.btn-white {
+  background: var(--white); color: var(--blue-600); padding: .8rem 1.8rem;
+  border-radius: var(--radius-sm); font-weight: 700; font-size: .88rem;
+  text-decoration: none; transition: all .25s; display: inline-flex; align-items: center; gap: .4rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
+
+/* ===================== CLIENTES ===================== */
+.clients { padding: 4rem 0; background: var(--bg); overflow: hidden; }
+.clients-track { display: flex; gap: 1.5rem; animation: scrollClients 35s linear infinite; width: max-content; }
+.clients-track:hover { animation-play-state: paused; }
+@keyframes scrollClients { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.client-logo {
+  flex-shrink: 0; width: 120px; height: 48px; background: var(--card);
+  border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .68rem; color: var(--gray-400);
+  letter-spacing: 1.5px; text-transform: uppercase; transition: all .3s;
+}
+.client-logo:hover { border-color: var(--blue-300); color: var(--blue-500); background: var(--blue-50); }
+
+/* ===================== MÉTRICAS ===================== */
+.metrics { padding: 5rem 0; background: var(--white); }
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.metric-card {
+  text-align: center; padding: 1.8rem 1.2rem; background: var(--card);
+  border: 1px solid var(--gray-200); border-radius: var(--radius);
+  transition: all .35s; box-shadow: var(--shadow-sm);
+}
+.metric-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--blue-200); }
+.metric-card .number { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: .3rem; }
+.metric-card .number.blue { color: var(--blue-500); }
+.metric-card .number.orange { color: var(--orange-500); }
+.metric-card .number.green { color: var(--green-500); }
+.metric-card .number.navy { color: var(--blue-800); }
+.metric-card h4 { font-weight: 700; font-size: .88rem; color: var(--gray-800); margin-bottom: .2rem; }
+.metric-card p { color: var(--gray-400); font-size: .78rem; }
+@media(max-width: 700px) { .metrics-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ===================== CTA FINAL ===================== */
+.final-cta { padding: 5rem 0; background: var(--bg); }
+.cta-box {
+  background: var(--card); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl); padding: 3.5rem; text-align: center;
+  position: relative; overflow: hidden; box-shadow: var(--shadow);
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(64,112,244,0.06), transparent); pointer-events: none;
+}
+.cta-box h2 { font-size: clamp(1.5rem,3vw,2rem); font-weight: 800; color: var(--gray-900); letter-spacing: -.5px; margin-bottom: .8rem; position: relative; z-index: 2; }
+.cta-box h2 .blue { color: var(--blue-500); }
+.cta-box p { color: var(--gray-500); font-size: .95rem; margin-bottom: 1.8rem; position: relative; z-index: 2; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+/* ===================== FOOTER ===================== */
+footer { padding: 3rem 0 1.5rem; border-top: 1px solid var(--gray-200); background: var(--white); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
+.footer-brand .logo { font-size: 1.3rem; display: inline-block; margin-bottom: .75rem; }
+.footer-brand p { color: var(--gray-400); font-size: .85rem; max-width: 260px; line-height: 1.6; }
+footer h5 { font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: .8rem; color: var(--gray-800); }
+footer ul { list-style: none; }
+footer ul li { margin-bottom: .45rem; }
+footer ul a { color: var(--gray-500); text-decoration: none; font-size: .85rem; transition: color .25s; }
+footer ul a:hover { color: var(--blue-500); }
+.footer-bottom { border-top: 1px solid var(--gray-200); padding-top: 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+.footer-bottom p { color: var(--gray-400); font-size: .75rem; }
+.footer-socials { display: flex; gap: .5rem; }
+.footer-socials a {
+  width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--gray-200);
+  display: flex; align-items: center; justify-content: center; color: var(--gray-400);
+  text-decoration: none; font-size: .72rem; font-weight: 700; transition: all .25s; background: var(--white);
+}
+.footer-socials a:hover { border-color: var(--blue-400); color: var(--blue-500); background: var(--blue-50); }
+@media(max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } .hero-buttons { flex-direction: column; } .hero-buttons a { text-align: center; } }
+
+/* ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(24px); transition: all .65s cubic-bezier(.16,1,.3,1); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <nav>
+    <a href="#" class="logo">digital<span>1000</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#about">QUEM SOMOS</a></li>
+      <li class="nav-dropdown">
+        <a href="#solutions">SOLUÇÕES ↓</a>
+        <div class="dropdown-menu">
+          <a href="#sol-1">PLATAFORMAS & APPS<small>Aplicações web e mobile sob medida</small></a>
+          <a href="#sol-2">AUTOMAÇÃO & IA<small>Processos inteligentes e escaláveis</small></a>
+          <a href="#sol-3">MARKETING DIGITAL 360°<small>Presença, performance e conversão</small></a>
+          <a href="#sol-4">INFRAESTRUTURA CLOUD<small>Escalabilidade e segurança total</small></a>
+        </div>
+      </li>
+      <li><a href="#cases">CASES</a></li>
+      <li><a href="#contact" class="nav-cta">FALE CONOSCO</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content fade-up">
+        <span class="hero-tag">Empresa Guarda-Chuva Digital</span>
+        <h1>Mil soluções.<br><span class="blue">Um ecossistema.</span></h1>
+        <p>A Digital1000 é o hub estratégico que conecta tecnologia, design e inteligência para transformar negócios. Cada vertical, uma especialidade.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary">Fale com um especialista →</a>
+          <a href="#solutions" class="btn-outline">Conheça as soluções</a>
+        </div>
+      </div>
+      <div class="hero-visual fade-up">
+        <canvas id="hero-canvas"></canvas>
+        <span class="canvas-hint" id="canvasHint">↔ Arraste para rotacionar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== QUICK ACTIONS (Condo-style cards) ==================== -->
+<section class="quick-actions">
+  <div class="container">
+    <div class="quick-grid fade-up">
+      <a href="#sol-1" class="q-card">
+        <div class="q-card-head">
+          <div class="q-card-icon bg-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4070F4" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+          </div>
+          <div>
+            <div class="q-card-label text-blue">Plataformas</div>
+            <div class="q-card-title">Apps & Web</div>
+          </div>
+        </div>
+        <div class="q-card-desc">Aplicações sob medida para qualquer dispositivo</div>
+      </a>
+      <a href="#sol-2" class="q-card">
+        <div class="q-card-head">
+          <div class="q-card-icon bg-orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div>
+            <div class="q-card-label text-orange">Automação</div>
+            <div class="q-card-title">IA & Bots</div>
+          </div>
+        </div>
+        <div class="q-card-desc">Processos inteligentes que se otimizam sozinhos</div>
+      </a>
+      <a href="#sol-3" class="q-card">
+        <div class="q-card-head">
+          <div class="q-card-icon bg-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <div class="q-card-label text-green">Marketing</div>
+            <div class="q-card-title">Digital 360°</div>
+          </div>
+        </div>
+        <div class="q-card-desc">Presença digital com performance mensurável</div>
+      </a>
+      <a href="#sol-4" class="q-card">
+        <div class="q-card-head">
+          <div class="q-card-icon bg-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="q-card-label text-purple">Cloud</div>
+            <div class="q-card-title">Infra & Segurança</div>
+          </div>
+        </div>
+        <div class="q-card-desc">Escalabilidade sem comprometer proteção</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SEGMENTOS ==================== -->
+<section class="segments" id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">Ecossistema Digital</span>
+      <h2>Uma empresa. <span class="blue">Múltiplas frentes.</span></h2>
+      <p>Verticais especializadas sob uma visão unificada de transformação digital.</p>
+    </div>
+    <div class="segments-grid fade-up">
+      <!-- Card 1 -->
+      <div class="c-card">
+        <div class="c-card-head">
+          <div class="c-card-icon bg-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4070F4" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <div class="c-card-label text-blue">Startups</div>
+            <div class="c-card-title">MVP ao Scale-up</div>
+          </div>
+        </div>
+        <div class="c-card-body">Construímos o alicerce digital para quem precisa crescer rápido com tecnologia validada e design que converte.</div>
+        <a href="#contact" class="c-card-action">→ Começar</a>
+      </div>
+      <!-- Card 2 -->
+      <div class="c-card">
+        <div class="c-card-head">
+          <div class="c-card-icon bg-orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div>
+            <div class="c-card-label text-orange">Empresas</div>
+            <div class="c-card-title">Digitalização Completa</div>
+          </div>
+        </div>
+        <div class="c-card-body">Sistemas sob medida e automação inteligente. Reduzimos atrito e aumentamos eficiência operacional em cada camada.</div>
+        <a href="#contact" class="c-card-action">→ Começar</a>
+      </div>
+      <!-- Card 3 -->
+      <div class="c-card">
+        <div class="c-card-head">
+          <div class="c-card-icon bg-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          </div>
+          <div>
+            <div class="c-card-label text-green">E-commerce</div>
+            <div class="c-card-title">Performance & Conversão</div>
+          </div>
+        </div>
+        <div class="c-card-body">Plataformas de alta performance, integrações com marketplaces e estratégias que transformam tráfego em receita.</div>
+        <a href="#contact" class="c-card-action">→ Começar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SOLUÇÕES (Cards with illustrations) ==================== -->
+<section class="solutions" id="solutions">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">Nossas Soluções</span>
+      <h2>Cada desafio digital <span class="blue">merece resposta à altura.</span></h2>
+    </div>
+    <div class="solutions-grid">
+
+      <!-- Sol 1 -->
+      <div class="sol-card c-card fade-up" id="sol-1">
+        <div class="sol-inner">
+          <div class="sol-text">
+            <div class="c-card-head">
+              <div class="c-card-icon bg-blue"><svg viewBox="0 0 24 24" fill="none" stroke="#4070F4" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+              <div><div class="c-card-label text-blue">Solução 01</div><div class="c-card-title">Plataformas & Aplicações</div></div>
+            </div>
+            <div class="c-card-body">Desenvolvimento web e mobile escalável. Apps nativos, PWAs, SaaS e portais — performance e experiência em cada detalhe.</div>
+            <a href="#contact" class="c-card-action">→ Saber mais</a>
+          </div>
+          <div class="sol-illustration">
+            <svg viewBox="0 0 160 130" fill="none">
+              <path d="M40 110 L40 40 L80 22 L80 92Z" fill="#F0F4FF" stroke="#B8D0FB" stroke-width="1"/>
+              <path d="M80 22 L110 38 L110 108 L80 92Z" fill="#E0EBFF" stroke="#B8D0FB" stroke-width="1"/>
+              <path d="M40 40 L80 22 L110 38 L70 56Z" fill="#FAFBFE"/>
+              <path d="M46 95 L46 50 L76 35 L76 80Z" fill="#4070F4" opacity="0.06"/>
+              <rect x="50" y="58" width="18" height="2" rx="1" fill="#4070F4" opacity="0.3" transform="skewY(-18)"/>
+              <rect x="50" y="66" width="12" height="2" rx="1" fill="#5B8AF7" opacity="0.2" transform="skewY(-18)"/>
+              <rect x="50" y="78" width="14" height="6" rx="2" fill="#F5A623" opacity="0.2" transform="skewY(-18)"/>
+              <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="3s" repeatCount="indefinite"/>
+                <circle cx="130" cy="35" r="10" fill="#E0EBFF" stroke="#B8D0FB" stroke-width="1"/>
+                <text x="123" y="39" font-size="8" fill="#4070F4" font-weight="800" font-family="sans-serif">&lt;/&gt;</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sol 2 -->
+      <div class="sol-card c-card fade-up" id="sol-2">
+        <div class="sol-inner">
+          <div class="sol-text">
+            <div class="c-card-head">
+              <div class="c-card-icon bg-orange"><svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+              <div><div class="c-card-label text-orange">Solução 02</div><div class="c-card-title">Automação & IA</div></div>
+            </div>
+            <div class="c-card-body">Fluxos automatizados, chatbots inteligentes e machine learning aplicado. Sistemas que aprendem e evoluem sozinhos.</div>
+            <a href="#contact" class="c-card-action">→ Saber mais</a>
+          </div>
+          <div class="sol-illustration">
+            <svg viewBox="0 0 160 130" fill="none">
+              <path d="M45 90 L45 50 L85 30 L85 70Z" fill="#FFF4E0" stroke="#FFD080" stroke-width="1"/>
+              <path d="M85 30 L125 50 L125 90 L85 70Z" fill="#FFD080" stroke="#FFBA42" stroke-width="1"/>
+              <path d="M45 50 L85 30 L125 50 L85 70Z" fill="#FFF4E0"/>
+              <circle cx="85" cy="48" r="6" fill="#F5A623" opacity="0.3"><animate attributeName="opacity" values="0.15;0.4;0.15" dur="2s" repeatCount="indefinite"/></circle>
+              <line x1="65" y1="58" x2="85" y2="45" stroke="#F5A623" stroke-width="1" opacity="0.3"/>
+              <line x1="85" y1="45" x2="105" y2="58" stroke="#F5A623" stroke-width="1" opacity="0.3"/>
+              <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-5;0,0" dur="4s" repeatCount="indefinite"/>
+                <circle cx="85" cy="10" r="12" fill="#FFF4E0" stroke="#FFD080" stroke-width="1.5"/>
+                <text x="77" y="15" font-size="10" fill="#F5A623" font-weight="800" font-family="sans-serif">AI</text>
+              </g>
+              <line x1="85" y1="22" x2="85" y2="30" stroke="#FFD080" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sol 3 -->
+      <div class="sol-card c-card fade-up" id="sol-3">
+        <div class="sol-inner">
+          <div class="sol-text">
+            <div class="c-card-head">
+              <div class="c-card-icon bg-green"><svg viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <div><div class="c-card-label text-green">Solução 03</div><div class="c-card-title">Marketing Digital 360°</div></div>
+            </div>
+            <div class="c-card-body">SEO, tráfego pago, social media e branding estratégico. Cada campanha rastreada, cada investimento justificado.</div>
+            <a href="#contact" class="c-card-action">→ Saber mais</a>
+          </div>
+          <div class="sol-illustration">
+            <svg viewBox="0 0 160 130" fill="none">
+              <path d="M20 110 L20 88 L42 77 L42 99Z" fill="#E8F8EF" stroke="#27AE60" stroke-width=".5" opacity=".6"/>
+              <path d="M42 77 L64 88 L64 110 L42 99Z" fill="#27AE60" opacity=".15"/>
+              <path d="M50 110 L50 72 L72 61 L72 99Z" fill="#E8F8EF" stroke="#27AE60" stroke-width=".5" opacity=".8"/>
+              <path d="M72 61 L94 72 L94 110 L72 99Z" fill="#27AE60" opacity=".2"/>
+              <path d="M80 110 L80 55 L102 44 L102 99Z" fill="#27AE60" opacity=".2" stroke="#27AE60" stroke-width=".5"/>
+              <path d="M102 44 L124 55 L124 110 L102 99Z" fill="#27AE60" opacity=".3"/>
+              <path d="M110 110 L110 35 L132 24 L132 99Z" fill="#27AE60" opacity=".35" stroke="#27AE60" stroke-width=".5"/>
+              <path d="M132 24 L154 35 L154 110 L132 99Z" fill="#27AE60" opacity=".45"/>
+              <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-3;0,0" dur="3s" repeatCount="indefinite"/>
+                <path d="M35 80 L65 62 L100 42 L140 22" stroke="#F5A623" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <polygon points="140,22 135,32 145,29" fill="#F5A623"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sol 4 -->
+      <div class="sol-card c-card fade-up" id="sol-4">
+        <div class="sol-inner">
+          <div class="sol-text">
+            <div class="c-card-head">
+              <div class="c-card-icon bg-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div><div class="c-card-label text-purple">Solução 04</div><div class="c-card-title">Cloud & Segurança</div></div>
+            </div>
+            <div class="c-card-body">Arquitetura cloud-native, DevOps, monitorização 24/7 e cibersegurança. A base que sustenta o seu crescimento.</div>
+            <a href="#contact" class="c-card-action">→ Saber mais</a>
+          </div>
+          <div class="sol-illustration">
+            <svg viewBox="0 0 160 130" fill="none">
+              <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="5s" repeatCount="indefinite"/>
+                <ellipse cx="75" cy="30" rx="45" ry="18" fill="#EDE9FE" stroke="#7C3AED" stroke-width=".8" opacity=".5"/>
+                <ellipse cx="58" cy="32" rx="28" ry="14" fill="#EDE9FE"/>
+                <ellipse cx="92" cy="32" rx="28" ry="14" fill="#EDE9FE"/>
+              </g>
+              <path d="M50 105 L50 60 L80 45 L80 90Z" fill="#EDE9FE" stroke="#7C3AED" stroke-width=".8" opacity=".7"/>
+              <path d="M80 45 L110 60 L110 105 L80 90Z" fill="#7C3AED" opacity=".1" stroke="#7C3AED" stroke-width=".5"/>
+              <circle cx="58" cy="72" r="2" fill="#7C3AED" opacity=".5"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite"/></circle>
+              <circle cx="58" cy="82" r="2" fill="#27AE60" opacity=".5"><animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/></circle>
+              <line x1="75" y1="46" x2="78" y2="45" stroke="#7C3AED" stroke-width="1" stroke-dasharray="2 2" opacity=".4"/>
+              <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-3;0,0" dur="3.5s" repeatCount="indefinite"/>
+                <path d="M125 55 L125 78 Q125 95 140 103 Q155 95 155 78 L155 55 L140 47Z" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1" opacity=".6"/>
+                <path d="M134 72 L138 76 L149 65" stroke="#7C3AED" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FEATURES ROW (Comunicados style) ==================== -->
+<section class="features-row">
+  <div class="container">
+    <div class="features-grid">
+      <!-- Últimas Atualizações -->
+      <div class="c-card feature-card fade-up">
+        <div class="c-card-topbar">
+          <div class="c-card-head" style="margin-bottom:0">
+            <div class="c-card-icon bg-blue" style="width:32px;height:32px"><svg viewBox="0 0 24 24" fill="none" stroke="#4070F4" stroke-width="2" stroke-linecap="round" style="width:16px;height:16px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="c-card-title" style="font-size:.92rem">Últimos Projetos</div>
+          </div>
+          <a href="#cases" class="view-all">Ver todos</a>
+        </div>
+        <ul class="comm-list">
+          <li class="comm-item">
+            <span class="comm-dot blue"></span>
+            <div>
+              <div class="comm-text-title">App FinCore — Mobile Banking</div>
+              <div class="comm-text-desc">Aplicação iOS/Android com biometria e pagamentos em tempo real.</div>
+              <div class="comm-meta">Há 5 dias · Plataformas</div>
+            </div>
+          </li>
+          <li class="comm-item">
+            <span class="comm-dot orange"></span>
+            <div>
+              <div class="comm-text-title">Chatbot IA — HealthPlus</div>
+              <div class="comm-text-desc">Assistente virtual com NLP para triagem de pacientes.</div>
+              <div class="comm-meta">Há 2 semanas · Automação</div>
+            </div>
+          </li>
+          <li class="comm-item">
+            <span class="comm-dot green"></span>
+            <div>
+              <div class="comm-text-title">Campanha SEO — NovaRetail</div>
+              <div class="comm-text-desc">Crescimento de 240% em tráfego orgânico em 6 meses.</div>
+              <div class="comm-meta">Há 3 semanas · Marketing</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Diferenciais -->
+      <div class="c-card feature-card fade-up">
+        <div class="c-card-topbar">
+          <div class="c-card-head" style="margin-bottom:0">
+            <div class="c-card-icon bg-orange" style="width:32px;height:32px"><svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" style="width:16px;height:16px"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
+            <div class="c-card-title" style="font-size:.92rem">Nossos Diferenciais</div>
+          </div>
+          <a href="#about" class="view-all">Saber mais</a>
+        </div>
+        <ul class="comm-list">
+          <li class="comm-item">
+            <span class="comm-dot blue"></span>
+            <div>
+              <div class="comm-text-title">Ecossistema Integrado</div>
+              <div class="comm-text-desc">Todas as verticais conectadas numa visão unificada de negócio.</div>
+            </div>
+          </li>
+          <li class="comm-item">
+            <span class="comm-dot orange"></span>
+            <div>
+              <div class="comm-text-title">Metodologia Ágil</div>
+              <div class="comm-text-desc">Sprints curtos, entregas frequentes e feedback contínuo.</div>
+            </div>
+          </li>
+          <li class="comm-item">
+            <span class="comm-dot green"></span>
+            <div>
+              <div class="comm-text-title">Stack Moderna</div>
+              <div class="comm-text-desc">React, Node, Python, AWS, GCP — tecnologias de ponta em cada projeto.</div>
+            </div>
+          </li>
+          <li class="comm-item">
+            <span class="comm-dot red"></span>
+            <div>
+              <div class="comm-text-title">Suporte Dedicado</div>
+              <div class="comm-text-desc">Equipa acessível 24/7 com SLA garantido em todos os contratos.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MANIFESTO ==================== -->
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-content fade-up">
+      <h2>O digital <span class="light">não espera.</span><br>O seu mercado também não.</h2>
+      <p><strong>Cada decisão</strong> adiada é um cliente que outro conquista. Com a Digital1000, a estratégia é clara, a execução é rápida e o resultado aparece onde importa: <strong>no crescimento do seu negócio.</strong></p>
+      <a href="#contact" class="btn-white">Agir agora →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLIENTES ==================== -->
+<section class="clients" id="cases">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">Quem Confia</span>
+      <h2>Empresas que escolheram <span class="blue">evoluir.</span></h2>
+    </div>
+  </div>
+  <div class="clients-track">
+    <div class="client-logo">TechFlow</div><div class="client-logo">NovaRetail</div>
+    <div class="client-logo">HealthPlus</div><div class="client-logo">EduSmart</div>
+    <div class="client-logo">FinCore</div><div class="client-logo">AgriNet</div>
+    <div class="client-logo">LogiTrack</div><div class="client-logo">FoodChain</div>
+    <div class="client-logo">BuildPro</div><div class="client-logo">MediaHub</div>
+    <div class="client-logo">CleanTech</div><div class="client-logo">AutoDrive</div>
+    <div class="client-logo">TechFlow</div><div class="client-logo">NovaRetail</div>
+    <div class="client-logo">HealthPlus</div><div class="client-logo">EduSmart</div>
+    <div class="client-logo">FinCore</div><div class="client-logo">AgriNet</div>
+    <div class="client-logo">LogiTrack</div><div class="client-logo">FoodChain</div>
+    <div class="client-logo">BuildPro</div><div class="client-logo">MediaHub</div>
+    <div class="client-logo">CleanTech</div><div class="client-logo">AutoDrive</div>
+  </div>
+</section>
+
+<!-- ==================== MÉTRICAS ==================== -->
+<section class="metrics">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">Resultados</span>
+      <h2>Números que <span class="blue">falam por si.</span></h2>
+    </div>
+    <div class="metrics-grid fade-up">
+      <div class="metric-card"><div class="number blue">+50</div><h4>Projetos Entregues</h4><p>Em diferentes segmentos</p></div>
+      <div class="metric-card"><div class="number orange">97%</div><h4>Taxa de Satisfação</h4><p>Clientes que recomendam</p></div>
+      <div class="metric-card"><div class="number green">4x</div><h4>Mais Velocidade</h4><p>Squads ágeis dedicados</p></div>
+      <div class="metric-card"><div class="number navy">24/7</div><h4>Suporte Contínuo</h4><p>Monitorização ininterrupta</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA FINAL ==================== -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <div class="cta-box fade-up">
+      <h2>É hora de decidir com clareza<br>e <span class="blue">agir com estratégia.</span></h2>
+      <p>A Digital1000 transforma visão em execução — e execução em resultado mensurável.</p>
+      <a href="mailto:contato@digital1000.com" class="btn-primary">Fale agora com um especialista →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">digital<span>1000</span></a>
+        <p>Mil soluções. Um ecossistema. Tecnologia, estratégia e resultado conectados.</p>
+      </div>
+      <div><h5>Menu</h5><ul><li><a href="#home">Home</a></li><li><a href="#about">Quem Somos</a></li><li><a href="#solutions">Soluções</a></li><li><a href="#cases">Cases</a></li><li><a href="#contact">Contato</a></li></ul></div>
+      <div><h5>Soluções</h5><ul><li><a href="#sol-1">Plataformas & Apps</a></li><li><a href="#sol-2">Automação & IA</a></li><li><a href="#sol-3">Marketing Digital</a></li><li><a href="#sol-4">Cloud & Segurança</a></li></ul></div>
+      <div><h5>Contato</h5><ul><li><a href="tel:+5511999999999">+55 (11) 9999-9999</a></li><li><a href="mailto:contato@digital1000.com">contato@digital1000.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 | Digital1000 – Todos os direitos reservados</p>
+      <div class="footer-socials"><a href="#">IG</a><a href="#">IN</a><a href="#">YT</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ==================== THREE.JS — DIGITAL1000 3D LOGO ====================
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const hint = document.getElementById('canvasHint');
+
+  // Renderer — transparent background
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.6;
+
+  // Scene
+  const scene = new THREE.Scene();
+
+  // Camera
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 500);
+  camera.position.set(0, 0, 15);
+
+  const root = new THREE.Group();
+  scene.add(root);
+
+  /* ═══════════ D SHAPE ═══════════ */
+  function makeDShape(radius, strokeW) {
+    const R = radius, S = strokeW, Ri = R - S;
+    const shape = new THREE.Shape();
+    const leftX = -R, topY = R, botY = -R;
+    const k = 0.5522847498;
+
+    shape.moveTo(leftX, botY);
+    shape.lineTo(leftX, topY);
+    shape.lineTo(0, topY);
+    shape.bezierCurveTo(R*k, topY, R, topY*k, R, 0);
+    shape.bezierCurveTo(R, botY*k, R*k, botY, 0, botY);
+    shape.lineTo(leftX, botY);
+
+    const hole = new THREE.Path();
+    const il = leftX + S, it = topY - S, ib = botY + S;
+    hole.moveTo(il, ib);
+    hole.lineTo(il, it);
+    hole.lineTo(0, it);
+    hole.bezierCurveTo(Ri*k, it, Ri, it*k, Ri, 0);
+    hole.bezierCurveTo(Ri, ib*k, Ri*k, ib, 0, ib);
+    hole.lineTo(il, ib);
+    shape.holes.push(hole);
+    return shape;
+  }
+
+  // Main D mesh
+  const mainD = makeDShape(3.2, 1.15);
+  const dGeo = new THREE.ExtrudeGeometry(mainD, {
+    depth: 1.5, bevelEnabled: true, bevelThickness: 0.06,
+    bevelSize: 0.04, bevelSegments: 3, curveSegments: 64,
+  });
+  dGeo.center();
+
+  // Gradient texture
+  const gc = document.createElement('canvas');
+  gc.width = gc.height = 512;
+  const gx = gc.getContext('2d');
+  const gg = gx.createLinearGradient(0, 0, 180, 512);
+  gg.addColorStop(0, '#5B8AF7');
+  gg.addColorStop(0.25, '#4070F4');
+  gg.addColorStop(0.5, '#3457D5');
+  gg.addColorStop(0.75, '#2d3561');
+  gg.addColorStop(1, '#1a1f36');
+  gx.fillStyle = gg;
+  gx.fillRect(0, 0, 512, 512);
+  const gradTex = new THREE.CanvasTexture(gc);
+
+  const dMat = new THREE.MeshPhysicalMaterial({
+    map: gradTex, metalness: 0.6, roughness: 0.1,
+    clearcoat: 1.0, clearcoatRoughness: 0.05,
+    reflectivity: 1.0, envMapIntensity: 2.0,
+  });
+  const dMesh = new THREE.Mesh(dGeo, dMat);
+  root.add(dMesh);
+
+  // Outline D
+  const outD = makeDShape(3.5, 0.08);
+  const outGeo = new THREE.ExtrudeGeometry(outD, {
+    depth: 0.2, bevelEnabled: false, curveSegments: 64,
+  });
+  outGeo.center();
+  const outMat = new THREE.MeshPhysicalMaterial({
+    color: 0x8BABF9, metalness: 0.3, roughness: 0.2,
+    transparent: true, opacity: 0.35,
+    emissive: 0x5B8AF7, emissiveIntensity: 0.3,
+  });
+  root.add(new THREE.Mesh(outGeo, outMat));
+
+  /* ═══════════ CIRCUIT TRACES ═══════════ */
+  const circGrp = new THREE.Group();
+  root.add(circGrp);
+
+  const cMat = new THREE.MeshPhysicalMaterial({
+    color: 0x1a1f36, emissive: 0x3457D5, emissiveIntensity: 0.5,
+    metalness: 0.8, roughness: 0.08,
+  });
+  const nMat = new THREE.MeshPhysicalMaterial({
+    color: 0x1a1f36, emissive: 0x4070F4, emissiveIntensity: 0.9,
+    metalness: 0.7, roughness: 0.08,
+  });
+
+  function addTrace(x1,y1,x2,y2,z){
+    const dx=x2-x1, dy=y2-y1, len=Math.sqrt(dx*dx+dy*dy), ang=Math.atan2(dy,dx);
+    const g = new THREE.CylinderGeometry(0.045,0.045,len,8);
+    g.rotateZ(Math.PI/2);
+    const m = new THREE.Mesh(g, cMat);
+    m.position.set((x1+x2)/2,(y1+y2)/2,z);
+    m.rotation.z = ang;
+    circGrp.add(m);
+  }
+  function addNode(x,y,z,r){
+    const m = new THREE.Mesh(new THREE.SphereGeometry(r||0.1,12,12), nMat);
+    m.position.set(x,y,z);
+    circGrp.add(m);
+    return m;
+  }
+
+  const cz = 0.8;
+  addTrace(0.8, -2.3, 3.2, -2.3, cz);
+  addTrace(1.2, -2.8, 3.8, -2.8, cz);
+  addTrace(0.5, -3.3, 2.8, -3.3, cz);
+  addTrace(3.2, -2.3, 3.2, -2.8, cz);
+  addTrace(2.8, -2.8, 2.8, -3.3, cz);
+
+  const nds = [];
+  nds.push(addNode(3.2, -2.3, cz, 0.1));
+  nds.push(addNode(3.8, -2.8, cz, 0.12));
+  nds.push(addNode(2.8, -3.3, cz, 0.1));
+  nds.push(addNode(3.2, -2.8, cz, 0.07));
+  nds.push(addNode(2.8, -2.8, cz, 0.07));
+
+  /* ═══════════ FLOATING PIXELS ═══════════ */
+  const pxGrp = new THREE.Group();
+  root.add(pxGrp);
+
+  const pxData = [
+    {x:1.2,y:2.5,z:0.3,s:0.3,c:0x4070F4},
+    {x:1.8,y:2.9,z:0.1,s:0.25,c:0x5B8AF7},
+    {x:0.8,y:3.1,z:0.4,s:0.22,c:0x8BABF9},
+    {x:2.2,y:2.4,z:0.2,s:0.2,c:0x3457D5},
+    {x:1.5,y:3.4,z:0.0,s:0.17,c:0xB8D0FB},
+    {x:2.5,y:3.0,z:0.3,s:0.15,c:0x5B8AF7},
+    {x:0.6,y:2.8,z:0.5,s:0.16,c:0x4070F4},
+    {x:2.8,y:2.7,z:0.1,s:0.13,c:0x8BABF9},
+    {x:2.0,y:3.7,z:0.2,s:0.11,c:0xB8D0FB},
+    {x:2.6,y:3.4,z:-0.1,s:0.09,c:0xF5A623},
+    {x:1.3,y:3.9,z:0.1,s:0.08,c:0x8BABF9},
+    {x:3.0,y:3.1,z:0.0,s:0.07,c:0xFFBA42},
+    {x:2.3,y:4.1,z:0.3,s:0.06,c:0xF5A623},
+  ];
+
+  const pxMs = [];
+  pxData.forEach(p => {
+    const g = new THREE.BoxGeometry(p.s, p.s, p.s);
+    const m = new THREE.MeshPhysicalMaterial({
+      color:p.c, emissive:p.c, emissiveIntensity:0.4,
+      metalness:0.5, roughness:0.15,
+      transparent:true, opacity:0.65+Math.random()*0.35,
+    });
+    const mesh = new THREE.Mesh(g, m);
+    mesh.position.set(p.x, p.y, p.z);
+    mesh.userData = {
+      bx:p.x, by:p.y,
+      ph:Math.random()*Math.PI*2,
+      sp:0.4+Math.random()*0.6,
+      rs:(Math.random()-0.5)*2,
+    };
+    pxMs.push(mesh);
+    pxGrp.add(mesh);
+  });
+
+  /* ═══════════ BACKGROUND PARTICLES (subtle, transparent bg) ═══════════ */
+  const bgG = new THREE.BufferGeometry();
+  const bgN = 80;
+  const bgP = new Float32Array(bgN*3);
+  for(let i=0;i<bgN;i++){
+    bgP[i*3]=(Math.random()-0.5)*30;
+    bgP[i*3+1]=(Math.random()-0.5)*30;
+    bgP[i*3+1]=(Math.random()-0.5)*60;
+    bgP[i*3+5]=(Math.random()-0.5)*45;
+    bgP[i*3+2]=(Math.random()-0.5)*15 - 5;
+    bgP[i*3+2]=(Math.random()-0.5)*15 - 30;
+  }
+  bgG.setAttribute('position',new THREE.BufferAttribute(bgP,3));
+  scene.add(new THREE.Points(bgG, new THREE.PointsMaterial({
+    color:0x8BABF9, size:0.04, transparent:true, opacity:0.25,
+  })));
+
+  /* ═══════════ ENVIRONMENT ═══════════ */
+  const ec=document.createElement('canvas'); ec.width=ec.height=256;
+  const ex=ec.getContext('2d');
+  const eg=ex.createLinearGradient(0,0,0,256);
+  eg.addColorStop(0,'#E0EBFF');
+  eg.addColorStop(0.5,'#B8D0FB');
+  eg.addColorStop(1,'#F0F4FF');
+  ex.fillStyle=eg; ex.fillRect(0,0,256,256);
+  const envT=new THREE.CanvasTexture(ec);
+  envT.mapping=THREE.EquirectangularReflectionMapping;
+  scene.environment=envT;
+
+  /* ═══════════ LIGHTING (adapted for light bg) ═══════════ */
+  scene.add(new THREE.AmbientLight(0xE0EBFF, 0.7));
+
+  const keyL = new THREE.DirectionalLight(0xffffff, 1.2);
+  keyL.position.set(5, 5, 8);
+  scene.add(keyL);
+
+  const fillL = new THREE.DirectionalLight(0x8BABF9, 0.4);
+  fillL.position.set(-5, -3, 5);
+  scene.add(fillL);
+
+  const rimL = new THREE.DirectionalLight(0x4070F4, 0.5);
+  rimL.position.set(0, 0, -6);
+  scene.add(rimL);
+
+  const topL = new THREE.PointLight(0x5B8AF7, 0.7, 20);
+  topL.position.set(1, 6, 4);
+  scene.add(topL);
+
+  const botL = new THREE.PointLight(0x1a1f36, 0.3, 15);
+  botL.position.set(-1, -6, 3);
+  scene.add(botL);
+
+  /* ═══════════ MOUSE / TOUCH CONTROLS ═══════════ */
+  let drag=false, pm={x:0,y:0}, tr={x:0,y:0}, cr={x:0,y:0}, autoR=true, autoTimeout;
+
+  function dn(x,y){ drag=true; autoR=false; pm={x,y}; clearTimeout(autoTimeout); if(hint) hint.style.opacity='0'; }
+  function mv(x,y){
+    if(!drag) return;
+    tr.y += (x - pm.x) * 0.008;
+    tr.x += (y - pm.y) * 0.008;
+    tr.x = Math.max(-1, Math.min(1, tr.x));
+    pm = {x,y};
+  }
+  function up(){ drag=false; autoTimeout=setTimeout(()=>{ autoR=true; },3000); }
+
+  canvas.addEventListener('pointerdown', e => dn(e.clientX, e.clientY));
+  window.addEventListener('pointermove', e => mv(e.clientX, e.clientY));
+  window.addEventListener('pointerup', up);
+
+  canvas.addEventListener('touchstart', e => dn(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+  canvas.addEventListener('touchmove', e => mv(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+  canvas.addEventListener('touchend', up);
+
+  // Scroll zoom
+  canvas.addEventListener('wheel', e => {
+    camera.position.z = Math.max(9, Math.min(22, camera.position.z + e.deltaY * 0.01));
+  }, {passive:true});
+
+  /* ═══════════ RESIZE ═══════════ */
+  function resize(){
+    const rect = canvas.getBoundingClientRect();
+    const w = rect.width, h = rect.width;
+    canvas.width = w * window.devicePixelRatio;
+    canvas.height = h * window.devicePixelRatio;
+    canvas.style.height = h + 'px';
+    renderer.setSize(w, h, false);
+    camera.aspect = 1;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ═══════════ ANIMATION ═══════════ */
+  const clk = new THREE.Clock();
+
+  function animate(){
+    requestAnimationFrame(animate);
+    const t = clk.getElapsedTime();
+
+    if(autoR) tr.y += 0.004;
+    cr.x += (tr.x - cr.x) * 0.06;
+    cr.y += (tr.y - cr.y) * 0.06;
+    root.rotation.x = cr.x;
+    root.rotation.y = cr.y;
+
+    // Pixel float
+    pxMs.forEach(m => {
+      const u = m.userData;
+      m.position.y = u.by + Math.sin(t*u.sp + u.ph) * 0.2;
+      m.position.x = u.bx + Math.cos(t*u.sp*0.5 + u.ph) * 0.08;
+      m.rotation.x += u.rs * 0.007;
+      m.rotation.y += u.rs * 0.01;
+      m.material.opacity = 0.45 + Math.sin(t*u.sp*1.5 + u.ph) * 0.35;
+    });
+
+    // Circuit node pulse
+    nds.forEach((n,i) => {
+      const s = 1 + Math.sin(t*2.5 + i*1.3) * 0.35;
+      n.scale.set(s,s,s);
+    });
+
+    // Breathing
+    const b = 1 + Math.sin(t*0.7) * 0.01;
+    root.scale.set(b,b,b);
+
+    // Light variation
+    topL.intensity = 0.6 + Math.sin(t*1.3) * 0.15;
+
+    // Background drift
+    const bp = bgG.attributes.position.array;
+    for(let i=0;i<bgN;i++){
+      bp[i*3+1] += 0.002;
+      if(bp[i*3+1]>15) bp[i*3+1]=-15;
+    }
+    bgG.attributes.position.needsUpdate = true;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  setTimeout(() => { if(hint) hint.style.opacity='0'; }, 5000);
+})();
+
+// ==================== EXISTING SITE SCRIPTS ====================
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>50));
+const hamburger=document.getElementById('hamburger'),navLinks=document.getElementById('navLinks');
+hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>navLinks.classList.remove('open')));
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
